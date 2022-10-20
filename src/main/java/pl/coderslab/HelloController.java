@@ -4,7 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.util.WebUtils;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalTime;
 
 @Controller
@@ -17,8 +20,8 @@ public class HelloController {
     }
 
     @GetMapping("/helloView")
-    public String helloViewAction(Model model) {
-
+    public String helloViewAction(Model model, HttpServletRequest request) {
+        Cookie c = WebUtils.getCookie(request, "cookie2");
 
         int hour = LocalTime.now().getHour();
 //        hour = 1;
